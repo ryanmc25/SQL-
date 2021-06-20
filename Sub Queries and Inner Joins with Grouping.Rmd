@@ -1,0 +1,38 @@
+SELECT 
+    tal.name artist,
+    tal.album_title,
+    COUNT(*) tracks_purchased
+FROM invoice_line il 
+INNER JOIN(
+SELECT 
+    t.track_id, al.title album_title, ar.name
+FROM track t 
+INNER JOIN album al ON al.album_id = t.album_id
+INNER JOIN artist ar ON ar.artist_id = al.artist_id
+) tal 
+ON tal.track_id = il.track_id
+GROUP BY album_title
+ORDER BY tracks_purchased DESC
+LIMIT 10 
+
+
+## Table Information (columns within tables used)
+
+Invoice_line (contains purchase info) 
+    Invoice_line_id
+    Invoice_id
+    Track_id
+    Unit_price
+    quantity
+track
+    track_id
+    name
+    album_id
+    media_type
+album
+    album_id
+    title 
+    artist_id
+artist 
+    artist_id
+    name 
