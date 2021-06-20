@@ -35,4 +35,4 @@ album
     artist_id
 artist 
     artist_id
-    name 
+    name  
